@@ -9,11 +9,20 @@ import MainHeader from './components/MainHeader/MainHeader';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+
 useEffect(()=>{
-  const storedUserLoggedInStatus=localStorage.getItem("isLoggedIn");
+  const timer=setTimeout(()=>{
+    const storedUserLoggedInStatus=localStorage.getItem("isLoggedIn");
   if(storedUserLoggedInStatus=="1"){
     setIsLoggedIn(true);
   }
+  },500);
+  return ()=>{
+    console.log("Clean Up function ");
+    clearTimeout(timer);
+
+  }
+  
 
 },[])
   
@@ -28,6 +37,7 @@ useEffect(()=>{
 
   const logoutHandler = () => {
     setIsLoggedIn(false);
+    localStorage.setItem("isLoggedIn","0");
   };
 
   return (
