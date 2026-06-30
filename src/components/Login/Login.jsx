@@ -1,6 +1,6 @@
 
 
-import React, { useState, useReducer, useEffect ,useContext} from "react";
+import React, { useState, useReducer, useEffect ,useContext ,useRef} from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
@@ -41,6 +41,10 @@ const Login = (props) => {
 
   const {isValid:emailValid}=emailState;
   const {isValid:passwordValid}=passwordState;
+  const emailRef=useRef(null);
+  useEffect(()=>{
+    emailRef.current.focus();
+  },[]);
   useEffect(()=>{
    const timer=setTimeout(()=>{
     console.log("Checking form");
@@ -83,6 +87,7 @@ const Login = (props) => {
           <label htmlFor="email">E-Mail</label>
           <input
             type="email"
+            ref={emailRef}
             id="email"
             value={emailState.value}
             onChange={emailChangeHandler}
