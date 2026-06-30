@@ -7,7 +7,7 @@ const MainHeader = (props) => {
   return (
     <header className={classes['main-header']}>
       <h1>Hi Family</h1>
-      <Navigation isLoggedIn={props.isAuthenticated} onLogout={props.onLogout} />
+      <Navigation  />
     </header>
   );
 };
